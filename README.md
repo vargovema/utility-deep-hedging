@@ -42,9 +42,7 @@ We can see from the plots below that all three utility functions are concave, wh
 
 Since the functions are all concave, we expect similar hedging behavior, despite their different degrees of concavity - function (1) is the most concave and function (3) the least concave.
 
-# Utility functions
-
-```{python}
+```python
 def U1(x):
     return tf.math.log(x)
 
@@ -55,7 +53,14 @@ def U3(x):
     return tf.math.divide(tf.math.subtract(tf.constant(1, dtype=tf.float32), tf.math.exp(tf.math.multiply(tf.constant(-0.005, dtype=tf.float32), x))), tf.constant(0.005, dtype=tf.float32))
 ```
 
+![](out/fig1.png)
+
+
 ## Construction of price paths using BS-model
+
+![](out/fig2.png)
+
+![](out/fig3.png)
 
 ## Neural networks
 
@@ -63,7 +68,7 @@ Since we only consider a single asset (and no derivative written on it), we defi
 
 ### Loss functions for the networks
 
-```{python}
+```python
 # Define loss functions
 def L1(y_true, y_predict):
     return tf.reduce_mean(-U1(y_predict - y_true))
@@ -77,19 +82,11 @@ def L3(y_true, y_predict):
     return tf.reduce_mean(-U3(y_predict - y_true))
 ```
 
-### Network for initial wealth
-
-### Network for hedging position
-
-### Network for wealth
-
-### Model training
-
-### Model testing
-
 ## Results
 
 ### Terminal Wealth
+
+![](out/fig4.png)
 
 Our results indicate that the wealth distribution of our 3 NNs are (nearly) the same, because they used (almost) the same hedging strategy!
 
@@ -115,4 +112,8 @@ We can see that the hedging strategy seems to be the same for all utility functi
 
 As mentioned in the beginning, the $\mu$ is the important parameter here: it needs to be large enough so that it compensates the risk stemming from $\sigma$ (of course, the size of $\sigma$ is also important in this sense). It should also be noted that it is possible to find a $\mu$ such that the most risk averse NN (1) would not invest into the asset and the least averse NN (3) would.
 
+![](out/fig5.png)
 
+![](out/fig6.png)
+
+![](out/fig7.png)
