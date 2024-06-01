@@ -1,5 +1,9 @@
 # Utility maximisation of NN hedging strategies
 
+This project aims to optimize the expected utility of terminal wealth using a single-asset Black Scholes model. The goal is to implement and analyze a neural network-based hedging strategy that maximizes utility under different utility functions.
+
+## Methodology
+
 As a model the standard single-asset Black scholes model is used
 
 $$dS_t = S_t(\mu dt + \sigma dW_t)$$
